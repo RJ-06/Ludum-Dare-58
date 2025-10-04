@@ -1,0 +1,70 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+
+    private Rigidbody2D rb;
+    Health playerHealth;
+    Inventory playerInventory;
+    [SerializeField] float speed;
+    [SerializeField] float jumpDampMult;
+    [SerializeField] float jumpForce;
+
+    private bool isJumping;
+    private bool isGrounded;
+
+    float moveX;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        playerHealth = GetComponent<Health>();
+        playerInventory = GetComponent<Inventory>();
+
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocityX = moveX * speed;
+    }
+
+    public void OnMove(InputValue val)
+    {
+        moveX = val.Get<Vector2>().x;
+    }
+
+    public void OnJump() 
+    {
+        if (isGrounded && !isJumping)
+        {
+            isGrounded = false;
+            isJumping = true;
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        }
+        else if (!isGrounded) 
+        {
+        
+        }
+        
+    }
+
+    public void OnJumpRelease() 
+    {
+        if (rb.linearVelocityY > 0 && isJumping)
+        {
+            rb.linearVelocityY *= jumpDampMult;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ground") && collision.transform.position.y < transform.position.y) 
+        {
+            isGrounded = true;
+            isJumping = false;
+        }
+    }
+
+}
