@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isGrounded;
 
+    private bool waitForCanJump = false;
+
+    [SerializeField] float jumpBufferTime;
+
     float moveX;
 
     private void Start()
@@ -28,6 +32,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocityX = moveX * speed;
+
+        if (waitForCanJump) 
+        { //jump buffer
+            if(isGrounded) OnJump();
+        }
     }
 
     public void OnMove(InputValue val)
@@ -35,7 +44,7 @@ public class PlayerController : MonoBehaviour
         moveX = val.Get<Vector2>().x;
     }
 
-    public void OnJump() 
+    public void OnJump()
     {
         if (isGrounded && !isJumping)
         {
@@ -43,14 +52,15 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
-        else if (!isGrounded) 
-        {
-        
+        else if (!isGrounded)
+        { //checks if you touch the ground in the next .1 seconds and initiates the jump then
+            waitForCanJump = true;
+            StartCoroutine("JumpBuffer");
         }
-        
+
     }
 
-    public void OnJumpRelease() 
+    public void OnJumpRelease()
     {
         if (rb.linearVelocityY > 0 && isJumping)
         {
@@ -60,11 +70,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ground") && collision.transform.position.y < transform.position.y) 
+        if (collision.gameObject.CompareTag("ground") && collision.transform.position.y < transform.position.y)
         {
             isGrounded = true;
             isJumping = false;
         }
+    }
+
+    private IEnumerator JumpBuffer() 
+    {
+
+        yield return new WaitForSeconds(jumpBufferTime);
+        waitForCanJump = false;
     }
 
 }
