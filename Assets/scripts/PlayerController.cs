@@ -11,13 +11,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float jumpDampMult;
     [SerializeField] float jumpForce;
-
+    [SerializeField] float jumpBufferTime;
     private bool isJumping;
     private bool isGrounded;
-
     private bool waitForCanJump = false;
+    
 
-    [SerializeField] float jumpBufferTime;
+    [SerializeField] Transform weaponPos;
+    GameObject currentWeaponUsed;
 
     float moveX;
 
@@ -37,6 +38,11 @@ public class PlayerController : MonoBehaviour
         { //jump buffer
             if(isGrounded) OnJump();
         }
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void OnMove(InputValue val)

@@ -1,3 +1,6 @@
+using JetBrains.Annotations;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -6,10 +9,22 @@ public class Weapon : MonoBehaviour
 
     [Tooltip("Used for weapon durability")]
     public Health health;
-    [SerializeField] int damagePerHit; //TODO - make this all scriptable object based - derived classes are SOs?
+    [SerializeField] int damagePerHit; 
 
+    public bool melee = true;
+
+    public bool attacking = false;
+    public bool beingThrown = false;
+    [SerializeField] Transform rotateAroundPoint;
+    [SerializeField] float meleeRotateAngle;
+    private Rigidbody2D rb;
 
     private int placeInInventory = -1;
+
+    [SerializeField] string opponentTag;
+
+    [SerializeField] GameObject weaponPickup;
+
     void Attack()
     {
         //IMPLEMENT - inheritance based? different attack based on type of thing?
@@ -17,6 +32,8 @@ public class Weapon : MonoBehaviour
 
     void ThrowWeapon(Vector2 throwDir, float throwForce)
     {
+        rb.AddForce(throwDir * throwForce, ForceMode2D.Impulse);
+        beingThrown = true;
         //TODO - remember remove from inventory
     }
 
@@ -28,5 +45,33 @@ public class Weapon : MonoBehaviour
     int GetPlaceInInventory() 
     {
         return placeInInventory;
+    }
+
+    public void MeleeAttack() 
+    {
+        attacking = true;
+        transform.RotateAround(rotateAroundPoint.position,new Vector3(0,0,1),30f); //MAKE THIS LERP
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (attacking && collision.CompareTag(opponentTag)) 
+        {
+            Health oppHealth = collision.gameObject.GetComponent<Health>();
+            oppHealth.TakeDamage(damagePerHit);
+        }
+        else if (beingThrown && (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("wall"))) 
+        {
+
+        }
+    }
+
+    IEnumerator stickInWall() 
+    {
+        yield return new WaitForSeconds(.1f);
+        rb.bodyType = RigidbodyType2D.Static;
+
+        GameObject g = Instantiate(weaponPickup, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }

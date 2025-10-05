@@ -5,27 +5,27 @@ public class Health : MonoBehaviour
     [SerializeField] int healthPoints;
     [SerializeField] int maxHealthPoints;
 
-    int GetHealth() 
+    public int GetHealth() 
     {
         return healthPoints;
     }
 
-    int GetMaxHealth() 
+    public int GetMaxHealth() 
     {
         return maxHealthPoints;
     }
 
-    void SetHealth(int health) 
+    public void SetHealth(int health) 
     {
         healthPoints = health;
     }
 
-    void TakeDamage(int damage) 
+    public void TakeDamage(int damage) 
     {
         healthPoints -= damage;
     }
 
-    void GainHealth(int healing) 
+    public void GainHealth(int healing) 
     {
         healthPoints += healing;
         if (healthPoints > maxHealthPoints) 
@@ -34,7 +34,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    void Die() 
+    public void Die() 
     {
         //IMPLEMENT - EITHER CALL AN EVENT OR MAKE THIS INHERITANCE BASED/DERIVED CLASSES CALL THIS FUNC WITH THEIR OWN IMPLEMENTATION
     }
