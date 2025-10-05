@@ -55,14 +55,19 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (attacking && collision.CompareTag(opponentTag)) 
+        if (attacking && collision.CompareTag(opponentTag))
         {
             Health oppHealth = collision.gameObject.GetComponent<Health>();
             oppHealth.TakeDamage(damagePerHit);
         }
-        else if (beingThrown && (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("wall"))) 
+        else if (beingThrown && collision.CompareTag(opponentTag)) 
         {
-
+            Health oppHealth = collision.gameObject.GetComponent<Health>();
+            oppHealth.TakeDamage(damagePerHit);
+        }
+        else if (beingThrown && (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("wall")))
+        {
+            StartCoroutine("stickInWall");
         }
     }
 
