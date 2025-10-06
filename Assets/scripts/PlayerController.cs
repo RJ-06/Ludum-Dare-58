@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isGrounded;
     private bool waitForCanJump = false;
+
+    [SerializeField] LayerMask interactableLayer;
+    [SerializeField] float pickupRange = 2f;
     
 
     [SerializeField] Transform weaponPos;
@@ -42,7 +45,34 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
+        HandleCurrHeldWeapon();
+    }
+
+    public void OnInteract()
+    {
+        Collider2D[] overlaps = Physics2D.OverlapCircleAll(transform.position, pickupRange, interactableLayer);
+        foreach (var overlap in overlaps)
+        {
+            InteractableObject item = overlap.GetComponent<InteractableObject>();
+            if (item != null && item.GetPickUpState())
+            {
+                item.PickUpObj();
+                break;
+            }
+        }
+    }
+
+    public void OnAttack()
+    {
+        // you have to actually have a weapon in hand
+        if (currentWeaponUsed != null)
+        {
+            Weapon weaponControl = currentWeaponUsed.GetComponent<Weapon>();
+            if (weaponControl != null && weaponControl.melee)
+            {
+                weaponControl.MeleeAttack();
+            }
+        }
     }
 
     public void OnMove(InputValue val)
@@ -71,6 +101,19 @@ public class PlayerController : MonoBehaviour
         if (rb.linearVelocityY > 0 && isJumping)
         {
             rb.linearVelocityY *= jumpDampMult;
+        }
+    }
+
+    void HandleCurrHeldWeapon()
+    {
+        if (playerInventory.itemHeld != null && currentWeaponUsed == null)
+        {
+            currentWeaponUsed = Instantiate(playerInventory.itemHeld, weaponPos.position, Quaternion.identity, weaponPos.transform);
+        }
+        else if (playerInventory.itemHeld != null && playerInventory.itemHeld != currentWeaponUsed)
+        {
+            Destroy(currentWeaponUsed);
+            currentWeaponUsed = Instantiate(playerInventory.itemHeld, weaponPos.position, Quaternion.identity, weaponPos.transform);
         }
     }
 

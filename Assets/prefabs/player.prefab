@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4539227410881031456}
   - component: {fileID: 2424569930650667145}
   - component: {fileID: 4875171151938031021}
+  - component: {fileID: 1677523155061406621}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -183,6 +184,10 @@ MonoBehaviour:
   jumpDampMult: 0.6
   jumpForce: 9
   jumpBufferTime: 0
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  pickupRange: 2
   weaponPos: {fileID: 0}
 --- !u!114 &4875171151938031021
 MonoBehaviour:
@@ -214,3 +219,19 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1677523155061406621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171922862306495540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac57838a48cb674439c94d1fc2fe1c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  inventory: []
+  maxInventorySize: 0
+  selectedItemInd: 0
+  itemHeld: {fileID: 0}
