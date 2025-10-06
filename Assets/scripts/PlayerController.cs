@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     GameObject currentWeaponPrefab;
 
     float moveX;
+    private bool facingRight = true;
 
     public float deathDelay = 0.5f;
     public bool isDead = false;
@@ -105,6 +106,22 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputValue val)
     {
         moveX = val.Get<Vector2>().x;
+        if (moveX > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (moveX < 0 && facingRight)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 
     public void OnJump()
