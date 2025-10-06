@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
-    bool canPickUp = false;
-
-    GameObject player = GameObject.FindGameObjectWithTag("Player");
+    public bool canPickUp = false;
 
     [Tooltip("prefab of the weapon/object you grab")]
     [SerializeField] GameObject objectPrefab;
@@ -21,9 +19,18 @@ public class InteractableObject : MonoBehaviour
     {
         //TODO - implement
         //make this disappear, add to inventory, particle effects
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         Inventory inventory = player.GetComponent<Inventory>();
         GameObject weapon = Instantiate(objectPrefab);
         inventory.AddObjectToInventory(weapon);
+        weapon.layer = 0;
+
+        Transform weaponPos = player.transform.Find("WeaponPos");
+        weapon.transform.SetParent(weaponPos);
+        weapon.transform.localPosition = Vector3.zero;
+        weapon.transform.localRotation = Quaternion.identity;
+
+        weapon.SetActive(false);
         Destroy(gameObject);
     }
 
