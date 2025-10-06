@@ -85,7 +85,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9061351386324011179}
   - component: {fileID: 1993885881889981953}
-  - component: {fileID: 4512094448437164502}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -159,24 +158,12 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_MaxValue: 100
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4512094448437164502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262565613033863464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e704c4ec6ebc4488fbbd7565e0b975, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &1781306344896378432
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5655591844881690937}
+  - component: {fileID: 4659931890459784776}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -656,6 +644,20 @@ RectTransform:
   m_AnchoredPosition: {x: 1, y: -8.6}
   m_SizeDelta: {x: -1.0050049, y: -46.79431}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4659931890459784776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231944147579289668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e704c4ec6ebc4488fbbd7565e0b975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Healthbar
+  player: {fileID: 0}
+  healthSlider: {fileID: 1993885881889981953}
 --- !u!1 &4337733335038729997
 GameObject:
   m_ObjectHideFlags: 0

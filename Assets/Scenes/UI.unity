@@ -127,6 +127,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 934450315528869402, guid: db23a3ed5b3bf8841aff169041025a6d, type: 3}
+      propertyPath: healthPoints
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 934450315528869402, guid: db23a3ed5b3bf8841aff169041025a6d, type: 3}
+      propertyPath: maxHealthPoints
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 990480874826487050, guid: db23a3ed5b3bf8841aff169041025a6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -176,6 +184,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db23a3ed5b3bf8841aff169041025a6d, type: 3}
+--- !u!1 &268406289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3171922862306495540, guid: db23a3ed5b3bf8841aff169041025a6d, type: 3}
+  m_PrefabInstance: {fileID: 268406288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &394329190
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +542,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1830419868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1262565613033863464, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+  m_PrefabInstance: {fileID: 31158219015158197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &31158219015158197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -659,7 +677,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
       propertyPath: m_Value
-      value: 0.477
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1830419868}
+    - target: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2386388059448026015, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -697,6 +743,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4512094448437164502, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 268406289}
+    - target: {fileID: 4659931890459784776, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 268406289}
+    - target: {fileID: 4659931890459784776, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 31158219015158198}
     - target: {fileID: 6861407333110306993, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -774,6 +832,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+--- !u!114 &31158219015158198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1993885881889981953, guid: 297dfebd157da09438ea7c729517dc2c, type: 3}
+  m_PrefabInstance: {fileID: 31158219015158197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830419868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1001 &2854475038266229487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -837,7 +906,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 394329193}
   - {fileID: 31158219015158197}
-  - {fileID: 2854475038266229487}
   - {fileID: 700115826}
   - {fileID: 268406288}
   - {fileID: 468463035}
+  - {fileID: 2854475038266229487}
