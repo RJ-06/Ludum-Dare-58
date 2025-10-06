@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8fe3e95df65e2499e11f0a851ef457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DropItem
-  objToDrop: {fileID: 0}
+  objToDrop: {fileID: 7069695305255404907, guid: b128cc357a393824193a195126e73f90, type: 3}
 --- !u!114 &4135422852106829556
 MonoBehaviour:
   m_ObjectHideFlags: 0
