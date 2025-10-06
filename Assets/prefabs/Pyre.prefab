@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2923942996311140556}
   - component: {fileID: -1408241734579284723}
   - component: {fileID: 1443196336688634626}
+  - component: {fileID: 6036019527247825959}
   m_Layer: 0
   m_Name: Pyre
   m_TagString: Untagged
@@ -178,3 +179,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DealDamage
   damageToDeal: 25
+--- !u!95 &6036019527247825959
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8800567267389374918}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f763d88ec5dc2147b06c3b26ab86665, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
