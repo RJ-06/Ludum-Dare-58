@@ -23,15 +23,42 @@ public class BossMovement : MonoBehaviour
     int currentPos = 0;
     Rigidbody2D rb;
 
+    bool makeDecision = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        if (makeDecision) 
+        {
+            int choice = Random.Range(1, 6);
+            switch (choice) 
+            {
+                //pretend this isn't jank
+                //case 0:
+                //    StartCoroutine(MoveToNextPosition());
+                //    StartCoroutine(WaitForNext(7f));
+                //    break;
+                case 1:
+                    StartCoroutine(SpiralFlameAttack());
+                    break;
+                case 2:
+                    ThreeFlamesAttack();
+                    break;
+                case 4:
+                    FlamePyre();
+                    break;
+                case 5:
+                    ThrowTrident();
+                    break;
+                default:
+                    Debug.Log("This shouldn't be happening");
+                    break;
+            }
+        }
     }
 
     IEnumerator MoveToNextPosition() 
@@ -80,6 +107,17 @@ public class BossMovement : MonoBehaviour
         GameObject t = Instantiate(trident);
         t.transform.LookAt(randomDir);
         t.GetComponent<Rigidbody2D>().AddForce(randomDir * throwForce, ForceMode2D.Impulse);
+    }
+
+    IEnumerator WaitForNext(float timeToWait) 
+    {
+        makeDecision = false;
+        yield return new WaitForSeconds(timeToWait);
+        StartCoroutine(MoveToNextPosition());
+        yield return new WaitForSeconds(4f);
+        makeDecision = true;
+        
+
     }
 
 
