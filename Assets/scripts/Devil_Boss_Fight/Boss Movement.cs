@@ -11,6 +11,7 @@ public class BossMovement : MonoBehaviour
     [SerializeField] GameObject fireProj;
     [SerializeField] float projForce;
     [SerializeField] float timeBetweenShotsForSpin;
+    [SerializeField] float heightForHighAttacks;
 
     [Header("FLAME PYRES")]
     [SerializeField] GameObject pyreObj;
@@ -19,11 +20,13 @@ public class BossMovement : MonoBehaviour
     [Header("SPEAR THROW")]
     [SerializeField] GameObject trident;
     [SerializeField] float throwForce;
+
+    [SerializeField] GameObject playerObj;
     
     int currentPos = 0;
     Rigidbody2D rb;
 
-    bool makeDecision = false;
+    bool makeDecision = true;
 
     void Start()
     {
@@ -34,28 +37,29 @@ public class BossMovement : MonoBehaviour
     {
         if (makeDecision) 
         {
-            int choice = Random.Range(1, 6);
+            int choice = Random.Range(0, 4);
             switch (choice) 
             {
-                //pretend this isn't jank
-                //case 0:
-                //    StartCoroutine(MoveToNextPosition());
-                //    StartCoroutine(WaitForNext(7f));
-                //    break;
-                case 1:
+                case 0:
                     StartCoroutine(SpiralFlameAttack());
+                    StartCoroutine(WaitForNext(6f));
+                    break;
+                case 1:
+                    if (transform.position.y < heightForHighAttacks) break;
+                    ThreeFlamesAttack();
+                    StartCoroutine(WaitForNext(2f));
                     break;
                 case 2:
-                    ThreeFlamesAttack();
-                    break;
-                case 4:
                     FlamePyre();
+                    StartCoroutine(WaitForNext(4f));
                     break;
-                case 5:
+                case 3:
                     ThrowTrident();
+                    StartCoroutine(WaitForNext(3f));
                     break;
                 default:
                     Debug.Log("This shouldn't be happening");
+                    StartCoroutine(WaitForNext(1f));
                     break;
             }
         }
@@ -74,11 +78,11 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator SpiralFlameAttack() 
     {
-        for (int i = 0; i < 12; i++) 
+        for (int i = 0; i < 24; i++) 
         {
-            GameObject p = Instantiate(fireProj);
+            GameObject p = Instantiate(fireProj, transform.position, Quaternion.identity);
             Rigidbody2D pRigidBody = p.GetComponent<Rigidbody2D>();
-            pRigidBody.AddForce(new Vector2(Mathf.Cos(30 * i), Mathf.Sin(30 * i)) , ForceMode2D.Impulse);
+            pRigidBody.AddForce(new Vector2(Mathf.Cos(Mathf.PI/6 * i), Mathf.Sin(Mathf.PI/6 * i)).normalized * projForce , ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(timeBetweenShotsForSpin);
         }
@@ -86,26 +90,32 @@ public class BossMovement : MonoBehaviour
 
     void ThreeFlamesAttack() 
     {
-        GameObject a = Instantiate(fireProj);
-        GameObject b = Instantiate(fireProj);
-        GameObject c = Instantiate(fireProj);
+        GameObject a = Instantiate(fireProj, transform.position, Quaternion.identity);
+        GameObject b = Instantiate(fireProj, transform.position, Quaternion.identity);
+        GameObject c = Instantiate(fireProj, transform.position, Quaternion.identity);
 
         a.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(-3 * Mathf.PI / 4), Mathf.Sin(-3 * Mathf.PI / 4)).normalized * projForce, ForceMode2D.Impulse);
         b.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-1) * projForce, ForceMode2D.Impulse);
-        a.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(-1 * Mathf.PI / 4), Mathf.Sin(-1 * Mathf.PI / 4)).normalized * projForce, ForceMode2D.Impulse);
+        c.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Cos(-1 * Mathf.PI / 4), Mathf.Sin(-1 * Mathf.PI / 4)).normalized * projForce, ForceMode2D.Impulse);
     }
 
     void FlamePyre() 
     {
         int pos = Random.Range(0, pyrePositions.Length);
         Instantiate(pyreObj, pyrePositions[pos].position, Quaternion.identity);
+        pos = Random.Range(0, pyrePositions.Length);
+        Instantiate(pyreObj, pyrePositions[pos].position, Quaternion.identity);
+        pos = Random.Range(0, pyrePositions.Length);
+        Instantiate(pyreObj, pyrePositions[pos].position, Quaternion.identity);
+
     }
 
     void ThrowTrident() 
     {
-        Vector2 randomDir = new Vector2(Random.Range(-1, 1), Random.Range(-1, 0)).normalized; //any downward angle
-        GameObject t = Instantiate(trident);
-        t.transform.LookAt(randomDir);
+        Vector2 randomDir = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)); 
+        randomDir = randomDir + (Vector2)playerObj.transform.position; //roughly towards player with a bit of randomness
+        GameObject t = Instantiate(trident, transform.position, Quaternion.identity);
+        t.transform.up = randomDir;
         t.GetComponent<Rigidbody2D>().AddForce(randomDir * throwForce, ForceMode2D.Impulse);
     }
 
@@ -114,7 +124,7 @@ public class BossMovement : MonoBehaviour
         makeDecision = false;
         yield return new WaitForSeconds(timeToWait);
         StartCoroutine(MoveToNextPosition());
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         makeDecision = true;
         
 
