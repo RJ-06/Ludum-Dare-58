@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 8327437209049091911}
   - component: {fileID: 7401706288727306594}
   - component: {fileID: 7362325008364047454}
-  m_Layer: 0
+  - component: {fileID: 7927426735715285793}
+  - component: {fileID: 6829444266082303353}
+  m_Layer: 7
   m_Name: spearDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,3 +243,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyAfterTimer
   timing: 6
+--- !u!114 &7927426735715285793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7069695305255404907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d86912995fb6c49867f081b40817a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  health: {fileID: 6829444266082303353}
+  damagePerHit: 0
+  melee: 1
+  attacking: 0
+  beingThrown: 0
+  rotateAroundPoint: {fileID: 990480874826487050, guid: db23a3ed5b3bf8841aff169041025a6d, type: 3}
+  meleeRotateAngle: 0
+  opponentTag: Boss
+  weaponPickup: {fileID: 7069695305255404907}
+--- !u!114 &6829444266082303353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7069695305255404907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dd68d48fcdb6324785d4208ba046a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  healthPoints: 10
+  maxHealthPoints: 10

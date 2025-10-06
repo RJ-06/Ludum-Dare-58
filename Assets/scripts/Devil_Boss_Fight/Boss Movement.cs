@@ -25,12 +25,14 @@ public class BossMovement : MonoBehaviour
     
     int currentPos = 0;
     Rigidbody2D rb;
+    Animator animator;
 
     bool makeDecision = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
