@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Healthbar : MonoBehaviour
 {
+
+    //PlayerController playerscript = GameObject.Find("player").GetComponent<PlayerController>();
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created

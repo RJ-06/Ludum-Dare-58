@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "PauseSystem",
+    "maps": [
+        {
+            "name": "Game",
+            "id": "57185899-6643-428a-8a27-023d95d6b596",
+            "actions": [
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "ce21424c-73e0-478e-bea2-04ea56846d85",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fd572e5e-6cb1-4032-b8f6-19801590b1ab",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
