@@ -31,18 +31,47 @@ public class Inventory : MonoBehaviour
     }
 
     void ChangeSelectedItem(int ind) 
-    { 
-        if(ind < inventory.Count) 
+    {
+        if (ind < inventory.Count)
         {
             selectedItemInd = ind;
             //TODO - add some effects or smth when you choose an item ie particle effects
             itemHeld = inventory[selectedItemInd];
+            Debug.Log(selectedItemInd);
         }
     }
 
-    public void DebugInventory() 
+    public void OnPrevious()
     {
-        for (int i = 0; i < inventory.Count; i++) 
+        if (inventory.Count == 0)
+        {
+            return;
+        }
+        selectedItemInd--;
+        if (selectedItemInd < 0)
+        {
+            selectedItemInd = inventory.Count - 1;
+        }
+        ChangeSelectedItem(selectedItemInd);
+    }
+
+    public void OnNext()
+    {
+        if (inventory.Count == 0)
+        {
+            return;
+        }
+        selectedItemInd++;
+        if (selectedItemInd >= inventory.Count)
+        {
+            selectedItemInd = 0;
+        }
+        ChangeSelectedItem(selectedItemInd);
+    }
+
+    public void DebugInventory()
+    {
+        for (int i = 0; i < inventory.Count; i++)
         {
             Debug.Log("item " + i + ": " + inventory[i].name);
         }
