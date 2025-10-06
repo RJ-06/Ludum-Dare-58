@@ -168,7 +168,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ground") && collision.transform.position.y < transform.position.y)
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            isGrounded = true;
+            isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ground"))
         {
             isGrounded = true;
             isJumping = false;
