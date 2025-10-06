@@ -1,25 +1,31 @@
+using System.Collections;
 using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
     [SerializeField] GameObject objToDrop;
-    [SerializeField] int damageToDeal;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
         {
-            GameObject a = Instantiate(objToDrop, transform.position, Quaternion.identity);
-            a.transform.rotation = transform.rotation;
-            Destroy(gameObject);
+            StartCoroutine(dropObj());
         }
-        else if (collision.gameObject.CompareTag("player")) 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ground")) 
         {
-            Health h = collision.gameObject.GetComponent<Health>();
-            if (h != null) 
-            {
-                h.TakeDamage(damageToDeal);
-            }
+            StartCoroutine(dropObj());
         }
+    }
+
+    IEnumerator dropObj() 
+    {
+        yield return new WaitForSeconds(.05f);
+        GameObject a = Instantiate(objToDrop,transform.position, Quaternion.identity);
+        a.transform.rotation = transform.rotation;
+        Destroy(gameObject);
     }
 
 }

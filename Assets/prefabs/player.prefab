@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4875171151938031021}
   - component: {fileID: 1677523155061406621}
   - component: {fileID: 934450315528869402}
+  - component: {fileID: 7322619487639595882}
   m_Layer: 8
   m_Name: player
   m_TagString: Untagged
@@ -284,3 +285,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   healthPoints: 100
   maxHealthPoints: 100
+--- !u!95 &7322619487639595882
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171922862306495540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2f02a5ca89143754bba712ca0b98c17a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
