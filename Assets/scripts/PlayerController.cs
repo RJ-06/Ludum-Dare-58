@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
             HandleCurrHeldWeapon();
             CheckHealth();
         }
+
     }
 
     private void CheckHealth()
