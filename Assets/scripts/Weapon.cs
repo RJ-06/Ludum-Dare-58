@@ -47,10 +47,28 @@ public class Weapon : MonoBehaviour
         return placeInInventory;
     }
 
-    public void MeleeAttack() 
+    public void MeleeAttack()
     {
         attacking = true;
-        transform.RotateAround(rotateAroundPoint.position,new Vector3(0,0,1),30f); //MAKE THIS LERP
+        StartCoroutine(Rotation());
+    }
+
+    private IEnumerator Rotation()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player.GetComponent<PlayerController>().facingRight)
+        {
+            transform.RotateAround(rotateAroundPoint.position, new Vector3(0, 0, 1), -30f);
+            yield return new WaitForSeconds(0.1f);
+            transform.RotateAround(rotateAroundPoint.position, new Vector3(0, 0, 1), 30f);
+        }
+        else
+        {
+            transform.RotateAround(rotateAroundPoint.position, new Vector3(0, 0, 1), 30f);
+            yield return new WaitForSeconds(0.1f);
+            transform.RotateAround(rotateAroundPoint.position, new Vector3(0, 0, 1), -30f);
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,7 +78,7 @@ public class Weapon : MonoBehaviour
             Health oppHealth = collision.gameObject.GetComponent<Health>();
             oppHealth.TakeDamage(damagePerHit);
         }
-        else if (beingThrown && collision.CompareTag(opponentTag)) 
+        else if (beingThrown && collision.CompareTag(opponentTag))
         {
             Health oppHealth = collision.gameObject.GetComponent<Health>();
             oppHealth.TakeDamage(damagePerHit);
