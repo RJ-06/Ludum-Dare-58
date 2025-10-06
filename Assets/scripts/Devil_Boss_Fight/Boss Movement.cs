@@ -132,7 +132,6 @@ public class BossMovement : MonoBehaviour
         t.GetComponent<Rigidbody2D>().AddForce(target * throwForce, ForceMode2D.Impulse);
     }
 
-
     IEnumerator WaitForNext(float timeToWait) 
     {
         makeDecision = false;
@@ -140,8 +139,6 @@ public class BossMovement : MonoBehaviour
         StartCoroutine(MoveToNextPosition());
         yield return new WaitForSeconds(2f);
         makeDecision = true;
-        
-
     }
 
 

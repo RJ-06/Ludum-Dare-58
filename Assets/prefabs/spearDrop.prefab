@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 691326522222464010}
   - component: {fileID: 1952744194145741958}
   - component: {fileID: 6069766585572827677}
-  - component: {fileID: 6917323141165219312}
   - component: {fileID: 8327437209049091911}
+  - component: {fileID: 7401706288727306594}
   m_Layer: 0
   m_Name: spearDrop
   m_TagString: Untagged
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7069695305255404907}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6069766585572827677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167,19 +167,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.23387837, y: 2.9558644}
   m_EdgeRadius: 0
---- !u!114 &6917323141165219312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7069695305255404907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd0b2a62983ab7349b58580473e18452, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DestroyAfterTimer
-  timing: 6
 --- !u!61 &8327437209049091911
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -226,3 +213,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.53187716, y: 0.49066228}
   m_EdgeRadius: 0
+--- !u!114 &7401706288727306594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7069695305255404907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83643d4c9fafd6a47b1589a0a461db2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  canPickUp: 1
+  objectPrefab: {fileID: 7069695305255404907}
