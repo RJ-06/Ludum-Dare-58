@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     GameObject currentWeaponPrefab;
 
     float moveX;
-    private bool facingRight = true;
+    public bool facingRight = true;
 
     public float deathDelay = 0.5f;
     public bool isDead = false;
