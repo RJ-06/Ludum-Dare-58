@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class PlayerController : MonoBehaviour
 
     float moveX;
 
+    public float deathDelay = 0.5f;
+    public bool isDead = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,17 +39,39 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocityX = moveX * speed;
+        if (!isDead)
+        {
+            rb.linearVelocityX = moveX * speed;
 
-        if (waitForCanJump) 
-        { //jump buffer
-            if(isGrounded) OnJump();
+            if (waitForCanJump) 
+            { //jump buffer
+                if(isGrounded) OnJump();
+            }
         }
     }
 
     private void Update()
     {
-        HandleCurrHeldWeapon();
+        if (!isDead)
+        {
+            HandleCurrHeldWeapon();
+            CheckHealth();
+        }
+    }
+
+    private void CheckHealth()
+    {
+        if (playerHealth.GetHealth() <= 0)
+        {
+            isDead = true;
+            StartCoroutine(ReloadOnDeathDelay());
+        }
+    }
+
+    private IEnumerator ReloadOnDeathDelay()
+    {
+        yield return new WaitForSeconds(deathDelay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void OnInteract()
