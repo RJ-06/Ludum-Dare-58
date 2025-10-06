@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Transform weaponPos;
     GameObject currentWeaponUsed;
+    GameObject currentWeaponPrefab;
 
     float moveX;
 
@@ -135,11 +136,16 @@ public class PlayerController : MonoBehaviour
         if (playerInventory.itemHeld != null && currentWeaponUsed == null)
         {
             currentWeaponUsed = Instantiate(playerInventory.itemHeld, weaponPos.position, Quaternion.identity, weaponPos.transform);
+            currentWeaponUsed.SetActive(true);
+            currentWeaponPrefab = playerInventory.itemHeld;
         }
-        else if (playerInventory.itemHeld != null && playerInventory.itemHeld != currentWeaponUsed)
+        // else if (playerInventory.itemHeld != null && playerInventory.itemHeld != currentWeaponUsed)
+        else if (playerInventory.itemHeld != null && playerInventory.itemHeld != currentWeaponPrefab)
         {
             Destroy(currentWeaponUsed);
             currentWeaponUsed = Instantiate(playerInventory.itemHeld, weaponPos.position, Quaternion.identity, weaponPos.transform);
+            currentWeaponUsed.SetActive(true);
+            currentWeaponPrefab = playerInventory.itemHeld;
         }
     }
 

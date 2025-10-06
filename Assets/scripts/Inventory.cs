@@ -9,11 +9,16 @@ public class Inventory : MonoBehaviour
     public int selectedItemInd;
     public GameObject itemHeld;
 
-    public void AddObjectToInventory(GameObject g) 
+    public void AddObjectToInventory(GameObject g)
     {
         if (inventory.Count >= maxInventorySize) return;
 
         inventory.Add(g);
+
+        if (inventory.Count == 1)
+        {
+            ChangeSelectedItem(0);
+        }
         //TODO - get the icon of the object to display it in inventory (if inventory ui is minecraft inspired)
     }
 
