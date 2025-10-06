@@ -487,7 +487,7 @@ MonoBehaviour:
   - {fileID: 2073028029}
   fireProj: {fileID: 5579324479900165700, guid: 795bb19a8e4a84445b5ebfb6ed79f458, type: 3}
   projForce: 8
-  timeBetweenShotsForSpin: 0.3
+  timeBetweenShotsForSpin: 0.15
   heightForHighAttacks: 0.4
   pyreObj: {fileID: 8800567267389374918, guid: 7efc4e610f8ca004c8f99d9f2bc9ac0e, type: 3}
   pyrePositions:
