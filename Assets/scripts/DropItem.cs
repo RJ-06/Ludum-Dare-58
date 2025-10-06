@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DropItem : MonoBehaviour
@@ -7,10 +8,24 @@ public class DropItem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ground"))
         {
-            GameObject a = Instantiate(objToDrop, transform.position, Quaternion.identity);
-            a.transform.rotation = transform.rotation;
-            Destroy(gameObject);
+            StartCoroutine(dropObj());
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ground")) 
+        {
+            StartCoroutine(dropObj());
+        }
+    }
+
+    IEnumerator dropObj() 
+    {
+        yield return new WaitForSeconds(.05f);
+        GameObject a = Instantiate(objToDrop,transform.position, Quaternion.identity);
+        a.transform.rotation = transform.rotation;
+        Destroy(gameObject);
     }
 
 }
