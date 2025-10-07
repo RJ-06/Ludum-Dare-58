@@ -9,6 +9,18 @@ public class Inventory : MonoBehaviour
     public int selectedItemInd;
     public GameObject itemHeld;
 
+    private void Update()
+    {
+        for (int i = 0; i < inventory.Count; i++) 
+        {
+            if (inventory[i].GetComponent<Health>().GetHealth() <= 0) 
+            {
+                Destroy(inventory[i]);
+                inventory.RemoveAt(i);
+            }
+        }
+    }
+
     public void AddObjectToInventory(GameObject g)
     {
         if (inventory.Count >= maxInventorySize) return;

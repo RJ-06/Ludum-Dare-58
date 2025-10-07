@@ -25,7 +25,7 @@ public class DropItem : MonoBehaviour
         yield return new WaitForSeconds(.05f);
         GameObject a = Instantiate(objToDrop,transform.position, Quaternion.identity);
         a.transform.rotation = transform.rotation;
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
 }

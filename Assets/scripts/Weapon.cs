@@ -55,7 +55,9 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator Rotation()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = FindAnyObjectByType<PlayerController>().gameObject;
+
         if (player.GetComponent<PlayerController>().facingRight)
         {
             transform.RotateAround(rotateAroundPoint.position, new Vector3(0, 0, 1), -30f);
